@@ -35,7 +35,7 @@ jobs:
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
       with:
         fetch-depth: 0
         token: ${{ secrets.GITHUB_TOKEN }}
@@ -141,7 +141,7 @@ jobs:
 
       - name: Checkout
         if: 
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           path: 'qmodem'
 
@@ -154,7 +154,7 @@ jobs:
       
       - name: Upload Release Note
         id: upload_release_note
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: Release Note
           path: ./qmodem/release_note.md
@@ -177,7 +177,7 @@ jobs:
 
       
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
         with:
           path: 'qmodem'
 
@@ -187,7 +187,7 @@ jobs:
 
       - name: Cache openwrt SDK
         id: cache-sdk
-        uses: actions/cache@v3
+        uses: actions/cache@v5
         with:
           path: sdk
           key: openwrt-sdk-${{ matrix.build_arch }}
@@ -246,7 +246,7 @@ jobs:
 
       - name: Upload QModem
         if: ${{ steps.compile.outputs.status == 'success' }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: QModem-${{ matrix.build_arch }}
           path: ${{ env.FIRMWARE }}*
@@ -259,12 +259,12 @@ jobs:
     if: ${{ needs.job_prepare.outputs.push_type == 'tag' }}
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           path: artifacts
         
       - name: Download Release Note
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: Release Note
           path: release_note
