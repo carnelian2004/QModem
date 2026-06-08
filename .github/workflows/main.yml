@@ -154,7 +154,7 @@ jobs:
       
       - name: Upload Release Note
         id: upload_release_note
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: Release Note
           path: ./qmodem/release_note.md
@@ -246,7 +246,7 @@ jobs:
 
       - name: Upload QModem
         if: ${{ steps.compile.outputs.status == 'success' }}
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: QModem-${{ matrix.build_arch }}
           path: ${{ env.FIRMWARE }}*
@@ -259,12 +259,12 @@ jobs:
     if: ${{ needs.job_prepare.outputs.push_type == 'tag' }}
     steps:
       - name: Download all artifacts
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           path: artifacts
         
       - name: Download Release Note
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v7
         with:
           name: Release Note
           path: release_note
