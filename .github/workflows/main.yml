@@ -205,10 +205,11 @@ jobs:
             mkdir sdk && tar -xvf $file_name -C ./sdk --strip-components=1
           fi
           cd sdk
-          echo "src-git base https://git.openwrt.org/feed/packages.git;openwrt-24.10" > feeds.conf
-          echo "src-git packages https://git.openwrt.org/project/luci.git;openwrt-24.10" >> feeds.conf
-          echo "src-git luci https://git.openwrt.org/feed/routing.git;openwrt-24.10" >> feeds.conf
-          echo "src-git routing https://git.openwrt.org/feed/telephony.git;openwrt-24.10" >> feeds.conf
+          echo "src-git base https://git.openwrt.org/openwrt/openwrt.git;openwrt-24.10" > feeds.conf
+          echo "src-git packages https://git.openwrt.org/feed/packages.git;openwrt-24.10" >> feeds.conf
+          echo "src-git luci https://git.openwrt.org/project/luci.git;openwrt-24.10" >> feeds.conf
+          echo "src-git routing https://git.openwrt.org/feed/routing.git;openwrt-24.10" >> feeds.conf
+          echo "src-git telephony https://git.openwrt.org/feed/telephony.git;openwrt-24.10" >> feeds.conf
           ./scripts/feeds update -a
           ./scripts/feeds install -a
           cd ..
